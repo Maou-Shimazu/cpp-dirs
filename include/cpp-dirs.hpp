@@ -60,17 +60,18 @@ class dirs {
     const std::string username = std::string(un);
 
   public:
-    // ________ Constructor ________
+    // ________ Constructors ________
     dirs() = default;
     dirs(std::string corp, std::string app_name)
-        : application_name(app_name), corporation(corp) {
+        : application_name(std::move(app_name)), corporation(std::move(corp)) {
         this->joint = corporation + "/" + application_name;
     }
-    dirs(std::string p): path(p) {
+    explicit dirs(std::string p): path(std::move(p)) {
         #if defined(WIN32) || defined(_WIN64)
         std::replace( this->path.begin(), this->path.end(), '/', '\\');
         #endif
     }
+
     // _________ Member Function _________
     std::string get_joint(){
         return this->joint;
@@ -88,6 +89,24 @@ class dirs {
     dirs home_dir(){
         return dirs(home() + "/" + joint);
     }
+    dirs cache_dir(){
+        return dirs(cache() + "/" + joint);
+    }
+    dirs data_dir(){
+        return dirs(data() + "/" + joint);
+    }
+    dirs local_data_dir(){
+        return dirs(local_data() + "/" + joint);
+    }
+    dirs public_dir(){
+        return dirs(public_folder() + "/" + joint);
+    }
+    dirs video_dir(){
+        return dirs(video() + "/" + joint);
+    }
+    dirs documents_dir(){
+        return dirs(documents() + "/" + joint);
+    }
 
     // __________ Static Functions __________
     static const std::string home() {
@@ -96,32 +115,31 @@ class dirs {
     static const std::string cache() {
         return empty_dir(std::string(dirs().temp));
     }
-    static const std::string data_dir() {
+    static std::string data() {
         return empty_dir(std::string(dirs().dd));
     }
-    static const std::string data_local_dir() {
+    static std::string local_data() {
         return empty_dir(std::string(dirs().ldd));
     }
-    static const std::string public_dir() {
+    static std::string public_folder() {
         return empty_dir(std::string(dirs().pub));
     }
-    static const std::string video() {
+    static std::string video() {
         return empty_dir(dirs().v);
     }
-    static const std::string documents() {
+    static std::string documents() {
         return empty_dir(dirs().doc);
     }
-    static const std::string pictures() {
+    static std::string pictures() {
         return empty_dir(dirs().pic);
     }
-    static const std::string downloads() {
+    static std::string downloads() {
         return empty_dir(dirs().down);
     }
-    static const std::string desktop() {
+    static std::string desktop() {
         return empty_dir(dirs().desk);
     }
-
-    static const std::string audio() {
+    static std::string audio() {
         return empty_dir(dirs().aud);
     }
 };

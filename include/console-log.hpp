@@ -28,9 +28,9 @@ namespace console {
     enum class log_level : char {
         Info = '-',
         Warning = '!',
-        Error = 'X',
+        Error = 'x',
         Success = '+',
-        Debug = '?'
+        Debug = '*'
     };
     
     void time_now() {
