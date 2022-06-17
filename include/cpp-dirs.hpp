@@ -60,6 +60,7 @@ class dirs {
     const std::string username = std::string(un);
 
   public:
+    // ________ Constructor ________
     dirs() = default;
     dirs(std::string corp, std::string app_name)
         : application_name(app_name), corporation(corp) {
@@ -70,7 +71,7 @@ class dirs {
         std::replace( this->path.begin(), this->path.end(), '/', '\\');
         #endif
     }
-
+    // _________ Member Function _________
     std::string get_joint(){
         return this->joint;
     }
@@ -90,49 +91,38 @@ class dirs {
 
     // __________ Static Functions __________
     static const std::string home() {
-        dirs d;
-        return empty_dir(std::string(d.h));
+        return empty_dir(std::string(dirs().h));
     }
     static const std::string cache() {
-        dirs d;
-        return empty_dir(std::string(d.temp));
+        return empty_dir(std::string(dirs().temp));
     }
     static const std::string data_dir() {
-        dirs d;
-        return empty_dir(std::string(d.dd));
+        return empty_dir(std::string(dirs().dd));
     }
     static const std::string data_local_dir() {
-        dirs d;
-        return empty_dir(std::string(d.ldd));
+        return empty_dir(std::string(dirs().ldd));
     }
     static const std::string public_dir() {
-        dirs d;
-        return empty_dir(std::string(d.pub));
+        return empty_dir(std::string(dirs().pub));
     }
     static const std::string video() {
-        dirs d;
-        return empty_dir(d.v);
+        return empty_dir(dirs().v);
     }
     static const std::string documents() {
-        dirs d;
-        return empty_dir(d.doc);
+        return empty_dir(dirs().doc);
     }
     static const std::string pictures() {
-        dirs d;
-        return empty_dir(d.pic);
+        return empty_dir(dirs().pic);
     }
     static const std::string downloads() {
-        dirs d;
-        return empty_dir(d.down);
+        return empty_dir(dirs().down);
     }
     static const std::string desktop() {
-        dirs d;
-        return empty_dir(d.desk);
+        return empty_dir(dirs().desk);
     }
 
     static const std::string audio() {
-        dirs d;
-        return empty_dir(d.aud);
+        return empty_dir(dirs().aud);
     }
 };
 #endif
