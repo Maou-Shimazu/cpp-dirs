@@ -2,9 +2,11 @@
 #include "cpp-dirs.hpp"
 
 int main() {
-    dirs host;
-    std::cout << host.hostname << std::endl;
-    std::cout << host.username << std::endl;
+    dirs config = dirs("Maou Corporation", "cppm");
+    std::cout << config.get_joint() << std::endl;
+    config.home_dir().create();
+    std::cout << config.hostname << std::endl;
+    std::cout << config.username << std::endl;
     std::cout << dirs::home() << std::endl;
     std::cout << dirs::cache() << std::endl;
     std::cout << dirs::data_dir() << std::endl;
