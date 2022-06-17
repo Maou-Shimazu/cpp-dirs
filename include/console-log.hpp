@@ -41,7 +41,7 @@ namespace console {
     }
 
     template <class T>
-    void static log(T message, log_level log_level_ = log_level::Info,
+    void log(T message, log_level log_level_ = log_level::Info,
              std::string color = Reset,
              std::experimental::source_location const source =
                  std::experimental::source_location::current()) {
