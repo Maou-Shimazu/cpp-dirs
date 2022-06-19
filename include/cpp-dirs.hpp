@@ -60,6 +60,7 @@ class dirs {
     const std::string username = std::string(un);
 
   public:
+    // todo: add linux support
     // ________ Constructors ________
     dirs() = default;
     dirs(std::string corp, std::string app_name)
@@ -106,6 +107,18 @@ class dirs {
     }
     dirs documents_dir(){
         return dirs(documents() + "/" + joint);
+    }
+    dirs pictures_dir(){
+        return dirs(pictures() +  "/" + joint);
+    }
+    dirs downloads_dir() {
+        return dirs(downloads() + "/" + joint);
+    }
+    dirs desktop_dir() {
+        return dirs(desktop() + "/" + joint);
+    }
+    dirs audio_dir() {
+        return dirs(audio() + "/" + joint);
     }
 
     // __________ Static Functions __________
