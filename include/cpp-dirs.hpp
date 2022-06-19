@@ -24,6 +24,22 @@ std::string empty_dir(std::string dir) {
     else
         return "";
 }
+
+std::string process(std::string command){
+    char buffer[128];
+    std::string result = "";
+
+    FILE* pipe = popen(command.c_str(), "r");
+    if (!pipe)
+       return "popen failed!";
+     while (!feof(pipe)) {
+       if (fgets(buffer, 128, pipe) != NULL)
+          result += buffer;
+    }
+    pclose(pipe);
+    return result;
+ }
+
 // note: add overhead comments for each func
 class dirs {
   private:
@@ -34,8 +50,20 @@ class dirs {
 #ifdef unix
     char hn[HOST_NAME_MAX];
     char un[LOGIN_NAME_MAX];
-    gethostname(hostname, HOST_NAME_MAX);
-    getlogin_r(username, LOGIN_NAME_MAX);
+    gethostname(hn, HOST_NAME_MAX);
+    getlogin_r(un, LOGIN_NAME_MAX);
+    // get accurate xdg names/commands
+    std::string h = process("xdg-user-dir HOME");
+    std::string temp = process("xdg-user-dir TEMP");
+    std::string dd = process("xdg-user-dir DATA");
+    std::string ldd = process("xdg-user-dir LOCAL");
+    std::string pub = process("xdg-user-dir PUBLIC");
+    std::string v = process("xdg-user-dir VIDEO");
+    std::string doc = process("xdg-user-dir DOCUMENTS");
+    std::string pic = process("xdg-user-dir PICTURES");
+    std::string down = process("xdg-user-dir DOWNLOADS");
+    std::string desk = process("xdg-user-dir DESKTOP");
+    std::string aud = process("xdg-user-dir AUDIO");
 
 #endif
 
