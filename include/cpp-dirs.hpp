@@ -25,6 +25,7 @@ std::string empty_dir(std::string dir) {
         return "";
 }
 
+// todo: look into replacing these with c++ funcs. eg fgets for getline
 std::string process(std::string command){
     char buffer[128];
     std::string result = "";
