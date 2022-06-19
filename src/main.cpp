@@ -4,7 +4,7 @@
 int main() {
     dirs config = dirs("Maou Corporation", "cppm");
     std::cout << config.get_joint() << std::endl;
-    config.home_dir().create();
+    config.documents_dir().create();
     std::cout << config.hostname << std::endl;
     std::cout << config.username << std::endl;
     std::cout << dirs::home() << std::endl;

@@ -13,7 +13,7 @@
 namespace fs = std::filesystem;
 using ll = console::log_level;
 
-#ifdef unix
+#if defined(__unix__)
 #include <limits.h>
 #include <unistd.h>
 #endif
@@ -48,11 +48,11 @@ class dirs {
     std::string corporation;
     std::string joint;
     std::string path;
-#ifdef unix
-    char hn[HOST_NAME_MAX];
-    char un[LOGIN_NAME_MAX];
-    gethostname(hn, HOST_NAME_MAX);
-    getlogin_r(un, LOGIN_NAME_MAX);
+#if defined(__unix__)
+    char hn[HOST_NAME_MAX + 1];
+    char un[LOGIN_NAME_MAX + 1];
+    int x = gethostname(hn, HOST_NAME_MAX + 1);
+    int y = getlogin_r(un, LOGIN_NAME_MAX + 1);
     // get accurate xdg names/commands
     std::string h = process("xdg-user-dir HOME");
     std::string temp = process("xdg-user-dir TEMP");
@@ -62,9 +62,9 @@ class dirs {
     std::string v = process("xdg-user-dir VIDEO");
     std::string doc = process("xdg-user-dir DOCUMENTS");
     std::string pic = process("xdg-user-dir PICTURES");
-    std::string down = process("xdg-user-dir DOWNLOADS");
+    std::string down = process("xdg-user-dir DOWNLOAD");
     std::string desk = process("xdg-user-dir DESKTOP");
-    std::string aud = process("xdg-user-dir AUDIO");
+    std::string aud = process("xdg-user-dir MUSIC");
 
 #endif
 
