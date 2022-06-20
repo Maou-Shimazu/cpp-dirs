@@ -53,18 +53,17 @@ class dirs {
     char un[LOGIN_NAME_MAX + 1];
     int x = gethostname(hn, HOST_NAME_MAX + 1);
     int y = getlogin_r(un, LOGIN_NAME_MAX + 1);
-    // get accurate xdg names/commands
-    std::string h = process("xdg-user-dir HOME");
+    const char* h = std::getenv("HOME");
     std::string temp = process("xdg-user-dir TEMP");
     std::string dd = process("xdg-user-dir DATA");
     std::string ldd = process("xdg-user-dir LOCAL");
     std::string pub = process("xdg-user-dir PUBLIC");
-    std::string v = process("xdg-user-dir VIDEO");
-    std::string doc = process("xdg-user-dir DOCUMENTS");
-    std::string pic = process("xdg-user-dir PICTURES");
-    std::string down = process("xdg-user-dir DOWNLOAD");
-    std::string desk = process("xdg-user-dir DESKTOP");
-    std::string aud = process("xdg-user-dir MUSIC");
+    std::string v = std::string(h) + "/Videos";
+    std::string doc = std::string(h) + "/Documents";
+    std::string pic = std::string(h) + "/Pictures";
+    std::string down = std::string(h) + "/Downloads";
+    std::string desk = std::string(h) + "/Desktop";
+    std::string aud = std::string(h) + "/Music";
 
 #endif
 
