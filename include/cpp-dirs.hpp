@@ -67,7 +67,7 @@ class dirs {
 
 #endif
 
-#if defined(WIN32) || defined(_WIN64)
+#if defined(__WIN32__) || defined(__WIN64__)
     const char *hn = std::getenv("COMPUTERNAME");
     const char *un = std::getenv("USERNAME");
     const char *h = std::getenv("USERPROFILE");
@@ -87,7 +87,6 @@ class dirs {
     const std::string hostname = std::string(hn);
     const std::string username = std::string(un);
 
-  public:
     // todo: add linux support
     // ________ Constructors ________
     dirs() = default;
@@ -96,7 +95,7 @@ class dirs {
         this->joint = corporation + "/" + application_name;
     }
     explicit dirs(std::string p): path(std::move(p)) {
-        #if defined(WIN32) || defined(_WIN64)
+        #if defined(__WIN32__) || defined(__WIN64__)
         std::replace( this->path.begin(), this->path.end(), '/', '\\');
         #endif
     }
