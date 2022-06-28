@@ -94,7 +94,7 @@ class dirs {
         : application_name(std::move(app_name)), corporation(std::move(corp)) {
         this->joint = corporation + "/" + application_name;
     }
-    explicit dirs(std::string p): path(std::move(p)) {
+    explicit dirs(std::string path): path(std::move(path)) {
         #if defined(__WIN32__) || defined(__WIN64__)
         std::replace( this->path.begin(), this->path.end(), '/', '\\');
         #endif
